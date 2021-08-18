@@ -14,23 +14,24 @@ $stmt = $items->getEmployees();
 $itemCount = $stmt->rowCount();
 
 
-echo json_encode($itemCount);
 
 if($itemCount > 0){
 
     $employeeArr = array();
     $employeeArr["body"] = array();
-    $employeeArr["itemCount"] = $itemCount;
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $e = array(
             "id" => $id,
-            "name" => $name,
-            "email" => $email,
-            "age" => $age,
-            "designation" => $designation,
-            "created" => $created
+            "lote" => $lote,
+            "nombre" => $nombre,
+            "apellido" => $apellido,
+            "inicio" => $inicio,
+            "terminacion" => $terminacion,
+            "tipo" => $tipo,
+            "numPieza" => $numPieza,
+            "defPieza" => $defPieza
         );
 
         array_push($employeeArr["body"], $e);
