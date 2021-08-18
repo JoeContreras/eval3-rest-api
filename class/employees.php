@@ -5,15 +5,18 @@ class Employee{
     private $conn;
 
     // Table
-    private $db_table = "Employee";
+    private $db_table = "Prueba";
 
     // Columns
     public $id;
-    public $name;
-    public $email;
-    public $age;
-    public $designation;
-    public $created;
+    public $lote;
+    public $nombre;
+    public $apellido;
+    public $inicio;
+    public $terminacion;
+    public $tipo;
+    public $numPieza;
+    public $defPieza;
 
     // Db connection
     public function __construct($db){
@@ -22,7 +25,7 @@ class Employee{
 
     // GET ALL
     public function getEmployees(){
-        $sqlQuery = "SELECT id, name, email, age, designation, created FROM " . $this->db_table . "";
+        $sqlQuery = "SELECT id, lote, nombre, apellido, inicio, terminacion, tipo,numPieza, defPieza FROM " . $this->db_table . "";
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
         return $stmt;
@@ -33,27 +36,36 @@ class Employee{
         $sqlQuery = "INSERT INTO
                         ". $this->db_table ."
                     SET
-                        name = :name, 
-                        email = :email, 
-                        age = :age, 
-                        designation = :designation, 
-                        created = :created";
+                        lote = :lote, 
+                        nombre = :nombre, 
+                        apellido = :apellido, 
+                        inicio = :inicio, 
+                        terminacion = :terminacion,
+                        tipo = :tipo,
+                        numPieza = :numPieza,
+                        defPieza = :defPieza";
 
         $stmt = $this->conn->prepare($sqlQuery);
 
         // sanitize
-        $this->name=htmlspecialchars(strip_tags($this->name));
-        $this->email=htmlspecialchars(strip_tags($this->email));
-        $this->age=htmlspecialchars(strip_tags($this->age));
-        $this->designation=htmlspecialchars(strip_tags($this->designation));
-        $this->created=htmlspecialchars(strip_tags($this->created));
+        $this->lote=htmlspecialchars(strip_tags($this->lote));
+        $this->nombre=htmlspecialchars(strip_tags($this->nombre));
+        $this->apellido=htmlspecialchars(strip_tags($this->apellido));
+        $this->inicio=htmlspecialchars(strip_tags($this->inicio));
+        $this->terminacion=htmlspecialchars(strip_tags($this->terminacion));
+        $this->tipo=htmlspecialchars(strip_tags($this->tipo));
+        $this->numPieza=htmlspecialchars(strip_tags($this->numPieza));
+        $this->defPieza=htmlspecialchars(strip_tags($this->defPieza));
 
         // bind data
-        $stmt->bindParam(":name", $this->name);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":age", $this->age);
-        $stmt->bindParam(":designation", $this->designation);
-        $stmt->bindParam(":created", $this->created);
+        $stmt->bindParam(":lote", $this->lote);
+        $stmt->bindParam(":nombre", $this->nombre);
+        $stmt->bindParam(":apellido", $this->apellido);
+        $stmt->bindParam(":inicio", $this->inicio);
+        $stmt->bindParam(":terminacion", $this->terminacion);
+        $stmt->bindParam(":tipo", $this->tipo);
+        $stmt->bindParam(":numPieza", $this->numPieza);
+        $stmt->bindParam(":defPieza", $this->defPieza);
 
         if($stmt->execute()){
             return true;

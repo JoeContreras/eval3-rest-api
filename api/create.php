@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -15,11 +16,14 @@ $item = new Employee($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$item->name = $data->name;
-$item->email = $data->email;
-$item->age = $data->age;
-$item->designation = $data->designation;
-$item->created = date('Y-m-d H:i:s');
+$item->lote = $data->lote;
+$item->nombre = $data->nombre;
+$item->apellido = $data->apellido;
+$item->inicio = $data->inicio;
+$item->terminacion = $data->terminacion;
+$item->tipo = $data->tipo;
+$item->numPieza = $data->numPieza;
+$item->defPieza = $data->defPieza;
 
 if($item->createEmployee()){
     echo 'Employee created successfully.';
