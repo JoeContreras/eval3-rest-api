@@ -18,11 +18,14 @@ $data = json_decode(file_get_contents("php://input"));
 $item->id = $data->id;
 
 // employee values
-$item->name = $data->name;
-$item->email = $data->email;
-$item->age = $data->age;
-$item->designation = $data->designation;
-$item->created = date('Y-m-d H:i:s');
+$item->lote = $data->lote;
+$item->nombre = $data->nombre;
+$item->apellido = $data->apellido;
+$item->inicio = $data->inicio;
+$item->terminacion = $data->terminacion;
+$item->tipo = $data->tipo;
+$item->numPieza = $data->numPieza;
+$item->defPieza = $data->defPieza;
 
 if($item->updateEmployee()){
     echo json_encode("Employee data updated.");
